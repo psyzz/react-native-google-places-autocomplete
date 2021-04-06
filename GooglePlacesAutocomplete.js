@@ -156,6 +156,7 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
     isFocused: () => inputRef.current.isFocused(),
     clear: () => inputRef.current.clear(),
     search: (text) => {
+      alert("ouuiiii")
       debounceData(text)
     },
   }));
@@ -536,8 +537,7 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
 
   const _onChangeText = (text) => {
     setStateText(text);
-    if(props && props.disabledAutocomplete === false) {
-    } else {
+    if(props && !props.disabledAutocomplete) {
       debounceData(text);
     }
   };
