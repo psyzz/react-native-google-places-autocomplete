@@ -155,6 +155,9 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
     focus: () => inputRef.current.focus(),
     isFocused: () => inputRef.current.isFocused(),
     clear: () => inputRef.current.clear(),
+    search: (text) => {
+      debounceData(text)
+    },
   }));
 
   const requestShouldUseWithCredentials = () =>
@@ -533,7 +536,10 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
 
   const _onChangeText = (text) => {
     setStateText(text);
-    debounceData(text);
+    if(props && props.disabledAutocomplete === false) {
+    } else {
+      debounceData(text);
+    }
   };
 
   const _handleChangeText = (text) => {
